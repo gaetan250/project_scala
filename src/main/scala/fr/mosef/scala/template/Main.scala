@@ -11,6 +11,8 @@ import org.apache.spark.SparkConf
 import com.globalmentor.apache.hadoop.fs.BareLocalFileSystem
 import org.apache.hadoop.fs.FileSystem
 
+
+
 object Main extends App with Job {
 
   val cliArgs = args
@@ -56,11 +58,13 @@ object Main extends App with Job {
   val reader: Reader = new ReaderImpl(sparkSession)
   val processor: Processor = new ProcessorImpl()
   val writer: Writer = new Writer()
-  val src_path = SRC_PATH
+  val src_path = "/Users/morganjowitt/Desktop/MOSEF/scala_template/src/main/resources/student_depression_dataset.csv"
   val dst_path = DST_PATH
 
   val inputDF: DataFrame = reader.read(src_path)
-  val processedDF: DataFrame = processor.process(inputDF)
+  val processedDF: DataFrame = processor.process(inputDF, "city")
+  processedDF.show(5)
   writer.write(processedDF, "overwrite", dst_path)
 
 }
+
