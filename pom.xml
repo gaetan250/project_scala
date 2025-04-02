@@ -110,7 +110,7 @@
         <repository>
             <id>github</id>
             <name>GitHub Packages</name>
-            <url>maven.pkg.github.com/morganjowitt/project_scala</url>
+            <url>https://maven.pkg.github.com/morganjowitt/project_scala</url>
         </repository>
     </distributionManagement>
 </project>
