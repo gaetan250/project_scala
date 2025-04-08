@@ -24,18 +24,27 @@ object Main extends App with Job {
   val SRC_PATH: String = try {
     cliArgs(1)
   } catch {
-    case e: java.lang.ArrayIndexOutOfBoundsException => {
-      print("No input defined")
+    case _: ArrayIndexOutOfBoundsException =>
+      println("❌ Aucun chemin d'entrée spécifié.")
       sys.exit(1)
-    }
   }
+
   val DST_PATH: String = try {
     cliArgs(2)
   } catch {
-    case e: java.lang.ArrayIndexOutOfBoundsException => {
-      "./default/output-writer"
-    }
+    case _: ArrayIndexOutOfBoundsException =>
+      println("⚠️ Aucun chemin de sortie spécifié, utilisation de la sortie par défaut.")
+      "src/main/resources/default-output"
   }
+
+  val GROUP_BY_COLUMN: String = try {
+    cliArgs(3)
+  } catch {
+    case _: ArrayIndexOutOfBoundsException =>
+      println("❌ Aucune colonne spécifiée pour le groupement (ex: 'city').")
+      sys.exit(1)
+  }
+
 
   val conf = new SparkConf()
   conf.set("spark.driver.memory", "64M")
@@ -58,10 +67,11 @@ object Main extends App with Job {
   val reader: Reader = new ReaderImpl(sparkSession)
   val processor: Processor = new ProcessorImpl()
   val writer: Writer = new Writer(sparkSession)
-  val src_path = "src/main/resources/student_depression_dataset.csv"
-  val dst_path = "src/main/resources/city_depression"
+  val src_path = SRC_PATH
+  val dst_path = DST_PATH
+  val groupByColumn = GROUP_BY_COLUMN
 
   val inputDF: DataFrame = reader.read(src_path)
-  val processedDF: DataFrame = processor.process(inputDF, "city")
+  val processedDF: DataFrame = processor.process(inputDF, groupByColumn)
   processedDF.show(5)
   writer.write(processedDF, dst_path)}
