@@ -64,4 +64,4 @@ object Main extends App with Job {
   val inputDF: DataFrame = reader.read(src_path)
   val processedDF: DataFrame = processor.process(inputDF, "city")
   processedDF.show(5)
-  writer.write(processedDF, dst_path)
+  writer.write(processedDF, dst_path)}
