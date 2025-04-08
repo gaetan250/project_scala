@@ -3,11 +3,18 @@ package fr.mosef.scala.template.writer
 import org.apache.spark.sql.{DataFrame, SparkSession}
 import java.util.Properties
 import java.io.FileInputStream
+import java.io.{FileNotFoundException, InputStream}
 
 class Writer(spark: SparkSession) {
 
   private val props = new Properties()
-  props.load(new FileInputStream("src/main/resources/application.properties"))
+  private val inputStream = getClass.getResourceAsStream("/application.properties")
+
+  if (inputStream == null) {
+    throw new FileNotFoundException("❌ Fichier application.properties non trouvé dans les ressources.")
+  }
+
+  props.load(inputStream)
 
   private val format: String = props.getProperty("writer.format", "csv")
   private val separator: String = props.getProperty("writer.separator", ",")
