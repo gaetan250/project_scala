@@ -23,6 +23,22 @@ class ReaderImpl(sparkSession: SparkSession) extends Reader {
       .load(path)
   }
 
+  def readParquet(path: String): DataFrame = {
+    sparkSession
+      .read
+      .format("parquet")
+      .load(path)
+  }
+
+  def readNoHeader(path: String): DataFrame = {
+    sparkSession
+      .read
+      .option("sep", ",")
+      .option("inferSchema", "true")
+      .option("header", "false")
+      .format("csv")
+      .load(path)
+  }
   def read(): DataFrame = {
     sparkSession.sql("SELECT 'Empty DataFrame for unit testing implementation")
   }

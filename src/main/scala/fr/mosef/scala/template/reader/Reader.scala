@@ -10,4 +10,9 @@ trait Reader {
 
   def read(): DataFrame
 
+  def readParquet(path: String): DataFrame
+
+
+
+
 }
