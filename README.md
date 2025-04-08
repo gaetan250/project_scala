@@ -1,4 +1,4 @@
-# Scala Projet
+# Scala Académique Projet
 
 L’application contient la lecture de données (le module reader), la transformation de données (le module processor), le module d’écriture du rapport (le module writor)
 
