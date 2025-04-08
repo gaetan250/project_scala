@@ -57,14 +57,14 @@ object Main extends App with Job {
 
   val reader: Reader = new ReaderImpl(sparkSession)
   val processor: Processor = new ProcessorImpl()
-  val writer: Writer = new Writer()
-  val src_path = "/Users/morganjowitt/Desktop/MOSEF/scala_template/src/main/resources/student_depression_dataset.csv"
-  val dst_path = DST_PATH
+  val writer: Writer = new Writer(sparkSession)
+  val src_path = "src/main/resources/student_depression_dataset.csv"
+  val dst_path = "src/main/resources/city_depression"
 
   val inputDF: DataFrame = reader.read(src_path)
   val processedDF: DataFrame = processor.process(inputDF, "city")
   processedDF.show(5)
-  writer.write(processedDF, "overwrite", dst_path)
+  writer.write(processedDF, dst_path)
 
 }
 
