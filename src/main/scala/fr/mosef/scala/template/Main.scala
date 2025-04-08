@@ -65,6 +65,3 @@ object Main extends App with Job {
   val processedDF: DataFrame = processor.process(inputDF, "city")
   processedDF.show(5)
   writer.write(processedDF, dst_path)
-
-}
-

@@ -12,7 +12,7 @@ trait Reader {
 
   def readParquet(path: String): DataFrame
 
-
+  def readNoHeader(path: String): DataFrame
 
 
 }
