@@ -1,4 +1,4 @@
-# 📊 Scala Data Pipeline Project
+# 📊 Scala Project
 
 Projet développé dans le cadre du cours MOSEF.  
 Il s'agit d'une application Scala basée sur Apache Spark, organisée selon une architecture modulaire, avec une chaîne CI/CD automatisée via Maven et GitHub Actions.
