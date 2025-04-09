@@ -19,7 +19,7 @@ Il s'agit d'une application Scala basée sur Apache Spark, organisée selon une 
 
 Le projet est découpé en trois modules principaux :
 
-- `Reader` : lecture des données (CSV etParquet )
+- `Reader` : lecture des données (CSV et Parquet )
 - `Processor` : transformation des données 
 - `Writer` : écriture du résultat dans le format souhaité
 
