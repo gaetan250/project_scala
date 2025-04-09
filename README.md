@@ -1,16 +1,28 @@
-# Scala Académique Projet
+# 📊 Scala Data Pipeline Project
 
-L’application contient la lecture de données (le module reader), la transformation de données (le module processor), le module d’écriture du rapport (le module writor)
+Projet développé dans le cadre du cours MOSEF.  
+Il s'agit d'une application Scala basée sur Apache Spark, organisée selon une architecture modulaire, avec une chaîne CI/CD automatisée via Maven et GitHub Actions.
 
-## 🧱 Stack technique
+---
 
-- **Langage** : Scala 2.13
-- **Framework** : Apache Spark 3.4.2
-- **Build Tool** : Maven
-- **Packaging** : JAR avec dépendances via `maven-assembly-plugin`
-  
-## ▶️ Lancer le projet
-   ```bash
-   git clone https://github.com/morganjowitt/project_scala.git
-   cd project_scala
+## 🛠️ Environnement de développement
+
+- **Langage** : Scala  
+- **Framework** : Apache Spark  
+- **IDE utilisé** : IntelliJ IDEA  
+- **Build Tool** : Maven  
+- **CI/CD** : GitHub Actions
+
+---
+
+## 📂 Structure du projet
+
+Le projet est découpé en trois modules principaux :
+
+- `Reader` : lecture des données (CSV etParquet )
+- `Processor` : transformation des données 
+- `Writer` : écriture du résultat dans le format souhaité
+
+Le fichier `Main.scala` est le point d’entrée du programme. Il orchestre l'ensemble des étapes en respectant la structure définie dans le `trait Job`.
+
 
